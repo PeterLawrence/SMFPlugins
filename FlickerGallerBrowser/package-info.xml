@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>PJL2008:FlickrGalleryBrowser</id>
+	<name>Flickr Gallery Browser</name>
+	<type>modification</type>
+	<version>0.7</version>
+
+	<install for="1.1 - 1.1.99,1.1 RC3,1.1 RC2">
+		<readme>ReadMe.txt</readme>
+		<modification type="file">FlickrGalleryBrowser.xml</modification>
+		<require-dir name="flickrhighslide" destination="$themedir" />
+		<require-dir name="phpFlickr" destination="$sourcedir" />
+		<require-file name="flickrgallerybrowser.php" destination="$sourcedir" />
+		<require-file name="flickrgallerybrowser.template.php" destination="$themedir" />
+		<code>flickrgalleryinstall.php</code>
+	</install>
+
+	<uninstall for="1.1 - 1.1.99,1.1 RC3,1.1 RC2">
+		<modification type="file" reverse="true">FlickrGalleryBrowser.xml</modification>
+		<remove-dir name="$themedir/flickrhighslide" />
+		<remove-file name="$themedir/flickrgallerybrowser.template.php" />
+		<remove-file name="$sourcedir/flickrgallerybrowser.php" />
+		<remove-dir name="$sourcedir/phpFlickr" />
+	</uninstall>
+	
+	<install for="2.0 - 2.99.99">
+		<readme>ReadMe.txt</readme>
+		<modification type="file">FlickrGalleryBrowserSMF2.xml</modification>
+		<require-dir name="flickrhighslide" destination="$themedir" />
+		<require-dir name="phpFlickr" destination="$sourcedir" />
+		<require-file name="flickrgallerybrowser.php" destination="$sourcedir" />
+		<require-file name="flickrgallerybrowser.template.php" destination="$themedir" />
+		<code>flickrgalleryinstall.php</code>
+	</install>
+
+	<uninstall for="2.0 - 2.99.99">
+		<modification type="file" reverse="true">FlickrGalleryBrowserSMF2.xml</modification>
+		<remove-dir name="$themedir/flickrhighslide" />
+		<remove-file name="$themedir/flickrgallerybrowser.template.php" />
+		<remove-file name="$sourcedir/flickrgallerybrowser.php" />
+		<remove-dir name="$sourcedir/phpFlickr" />
+	</uninstall>
+</package-info>

@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>PeterLawrence:PJL2000</id>
+	<version>0.4</version>
+
+	<file name="$sourcedir/LogInOut.php">
+		<operation>
+			<search position="before"><![CDATA[// Set the login_url if it's not already set (but careful not to send us to an attachment).
+	if (empty($_SESSION['login_url']) && isset($_SESSION['old_url']) && strpos($_SESSION['old_url'], 'dlattach') === false &&  preg_match('~(board|topic)[=,]~', $_SESSION['old_url']) != 0)
+		$_SESSION['login_url'] = $_SESSION['old_url'];
+]]></search>
+			<add><![CDATA[
+// PJL Redirect on login/logout Mod.
+	if (!empty($modSettings['logon_redirect_enable']) && !empty($modSettings['logon_redirect_url']))
+	{
+		if (empty($_SESSION['login_url']))
+			$_SESSION['login_url'] = $modSettings['logon_redirect_url'];
+	}
+// End Mod.
+]]></add>
+		</operation>
+	<operation>
+			<search position="after"><![CDATA[	// Off to the merry board index we go!
+	if ($redirect)
+	{
+]]></search>
+			<add><![CDATA[	// PJL Redirect on login/logout Mod.
+	if (!empty($modSettings['logout_redirect_enable']) && !empty($modSettings['logout_redirect_url']))
+	{
+		if (empty($_SESSION['logout_url']))
+			$_SESSION['logout_url'] = $modSettings['logout_redirect_url'];
+	}
+	// End Mod.
+	
+]]></add>
+		</operation>
+	</file>
+
+	<file name="$sourcedir/ManageSettings.php">
+		<operation>
+			<search position="before"><![CDATA[$config_vars = array(
+		// Mod authors, add any settings UNDER this line. Include a comma at the end of the line and don't remove this statement!!]]></search>
+			<add><![CDATA[
+			// PJL Redirect on login/logout Mod
+			array('check', 'logon_redirect_enable',
+				&$txt['logon_redirect_enable']),
+			array('text', 'logon_redirect_url'),
+			array('check', 'logout_redirect_enable',
+				&$txt['logout_redirect_enable']),
+			array('text', 'logout_redirect_url'),
+		]]></add>
+		</operation>
+	</file>
+		
+	<file name="$languagedir/Modifications.english.php">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$txt['logon_redirect_enable'] = 'Enable Logon Redirect<br /><span class="smalltext">(This redirect users to given URL when they login)</span>';
+$txt['logon_redirect_url'] = 'Enter Login URL';
+$txt['logout_redirect_enable'] = 'Enable Logout Redirect?<br /><span class="smalltext">(This redirect users to given URL when they logout)</span>';
+$txt['logout_redirect_url'] = 'Enter Logout URL';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Modifications.english-utf8.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$txt['logon_redirect_enable'] = 'Enable Logon Redirect?<br /><span class="smalltext">(This redirect users to given URL when they logout)</span>';
+$txt['logon_redirect_url'] = 'Enter Login URL';
+$txt['logout_redirect_enable'] = 'Enable Logout Redirect?<br /><span class="smalltext">(This redirect users to given URL when they logout)</span>';
+$txt['logout_redirect_url'] = 'Enter Login URL';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Modifications.english_british.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$txt['logon_redirect_enable'] = 'Enable Logon Redirect<br /><span class="smalltext">(This redirect users to given URL when they login)</span>';
+$txt['logon_redirect_url'] = 'Enter Login URL';
+$txt['logout_redirect_enable'] = 'Enable Logout Redirect?<br /><span class="smalltext">(This redirect users to given URL when they logout)</span>';
+$txt['logout_redirect_url'] = 'Enter Logout URL';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Modifications.english_british-utf8.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$txt['logon_redirect_enable'] = 'Enable Logon Redirect<br /><span class="smalltext">(This redirect users to given URL when they login)</span>';
+$txt['logon_redirect_url'] = 'Enter Login URL';
+$txt['logout_redirect_enable'] = 'Enable Logout Redirect?<br /><span class="smalltext">(This redirect users to given URL when they logout)</span>';
+$txt['logout_redirect_url'] = 'Enter Logout URL';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Help.english.php">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$helptxt['logon_redirect_url'] = ' Enter the url you wish to direct the user to when they login<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+$helptxt['logout_redirect_url'] = ' Enter the url you wish to direct the user to when they logout<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Help.english-utf8.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$helptxt['logon_redirect_url'] = ' Enter the url you wish to direct the user to when they login<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+$helptxt['logout_redirect_url'] = ' Enter the url you wish to direct the user to when they logout<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Help.english_british.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$helptxt['logon_redirect_url'] = ' Enter the url you wish to direct the user to when they login<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+$helptxt['logout_redirect_url'] = ' Enter the url you wish to direct the user to when they logout<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+	<file name="$languagedir/Help.english_british-utf8.php" error="skip">
+		<operation>
+			<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Redirect on login/logout Mod.
+$helptxt['logon_redirect_url'] = ' Enter the url you wish to direct the user to when they login<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+$helptxt['logout_redirect_url'] = ' Enter the url you wish to direct the user to when they logout<br /> e.g. if you want to sent them to the front page of your site enter http://yoursite.com/<br /> To send them to the forum enter action=forum etc<br />If you don’t provide the full url path (i.e. http://yoursite.xxx/home.html) SMF assumes it’s an SMF function and appends http://yoursite.xxx/index.php? before the URL address.<br />For example if you specify board=1.0 this automatically becomes http://yoursite.xxx/index.php?board=1.0</br />';
+// End Mod.
+]]></add>
+		</operation>
+	</file>
+	
+</modification>

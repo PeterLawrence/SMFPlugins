@@ -1,0 +1,29 @@
+<?xml version="0.4"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>PeterLawrence:PJL2000</id>
+	<name>Redirect on Login and/or Logout mod</name>
+	<type>modification</type>
+	<version>0.4</version>
+
+	<install for="1.1 - 1.1.99,1.1 RC3,1.1 RC2">
+		<readme type="file" parsebbc="true">readme.txt</readme>
+		<modification>install.xml</modification>
+	</install>
+	
+	<uninstall for="1.1 - 1.1.99,1.1 RC3,1.1 RC2">
+		<readme type="inline">This will uninstall the Redirect On Login Mod.</readme>
+		<modification type="file" reverse="true">install.xml</modification>
+	</uninstall>
+	
+	
+	<install for="2.0 - 2.99.99">
+		<readme type="file" parsebbc="true">readme.txt</readme>
+		<modification>install2.xml</modification>
+	</install>
+	
+	<uninstall for="2.0 - 2.99.99">
+		<readme type="inline">This will uninstall the Redirect On Login Mod.</readme>
+		<modification type="file" reverse="true">install2.xml</modification>
+	</uninstall>
+</package-info>

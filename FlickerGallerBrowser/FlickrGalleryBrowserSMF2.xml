@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>PJL2008:FlickrGalleryBrowser</id>
+<version>0.7</version>
+
+<file name="$boarddir/index.php">
+	<operation>
+		<search position="before"><![CDATA[
+		'collapse' => array('BoardIndex.php', 'CollapseCategory'),]]></search>
+			<add><![CDATA[
+		'flickrgallerybrowser' => array('flickrgallerybrowser.php', 'FlickrGalleryBrowser'),]]></add>
+	</operation>
+</file>
+
+<file name="$sourcedir/Subs.php">
+	<operation>
+		<search position="after"><![CDATA[			'mlist' => array(]]></search>
+		<add><![CDATA[			'flickrgallerybrowser' => array(
+				'title' => $txt['flickr_gallery'],
+				'href' => $scripturl . '?action=flickrgallerybrowser',
+				'show' => true,
+				'sub_buttons' => array(
+				),
+			),
+]]></add>
+	</operation>
+</file>
+	
+<file name="$sourcedir/ManageSettings.php">
+	<operation>
+		<search position="before"><![CDATA[$config_vars = array(
+		// Mod authors, add any settings UNDER this line. Include a comma at the end of the line and don't remove this statement!!]]></search>
+			<add><![CDATA[
+			// PJL Flickr Gallery Mod
+			array('text', 'gallery_flickr_API_Key'),
+			array('text', 'gallery_flickr_account'),
+            array('select', 'gallery_flickr_mode', array(&$txt['gallery_flickr_sets'], &$txt['gallery_flickr_groups'])),
+			array('check', 'gallery_flickr_fixed_setgroup'),
+			array('text', 'gallery_flickr_default_setgroup'),
+			array('int', 'gallery_flickr_columns'),
+            array('int', 'gallery_flickr_rows'),
+			array('check', 'gallery_flickr_enable_db_catch'),
+			array('check', 'gallery_flickr_enable_file_catch'),
+			array('text', 'gallery_flickr_cache_folder'),
+		]]></add>
+	</operation>
+</file>
+
+<file name="$languagedir/Modifications.english.php">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$txt['flickr_gallery'] = 'Flickr Gallery';
+$txt['flickr_table_title'] = 'Flickr Gallery Browser';
+$txt['no_flickr_APIKey'] = 'Please specify a Flickr API Key.';
+$txt['no_flickr_account'] = 'Please specify a Flickr User Account.';
+$txt['no_flickr_photos'] = 'No Photos Found.';
+$txt['no_flickr_sets'] = 'No Sets Found.';
+$txt['no_flickr_groups'] = 'No Groups Found.';
+$txt['no_flickr_default_set'] = 'Default ablum only specified, but no default set assigned.';
+$txt['flickr_set'] = 'Set: ';
+$txt['flickr_group'] = 'Group: ';
+$txt['flickr_thumbnail']='Click to enlarge';
+$txt['flickr_set_thumbnail']='Click to go to set';
+$txt['flickr_account'] = 'Flickr Account: ';
+$txt['gallery_flickr_API_Key'] = 'Enter Flickr API Key';
+$txt['gallery_flickr_account'] = 'Enter Flickr Account ID';
+$txt['gallery_flickr_fixed_setgroup'] = 'Default Flickr Set/Group Only';
+$txt['gallery_flickr_default_setgroup'] = 'Default Flickr Set/Group';
+$txt['gallery_flickr_columns'] = 'Flickr Gallery Table Columns';
+$txt['gallery_flickr_rows'] = 'Flickr Gallery Table Rows';
+$txt['gallery_flickr_enable_db_catch'] = 'Enable Database Caching';
+$txt['gallery_flickr_enable_file_catch'] = 'Enable File Caching';
+$txt['gallery_flickr_cache_folder'] = 'Flickr Gallery Cache Folder<br /><span class="smalltext" style="font-weight: bold;">(If using file caching specify a valid folder here)</span>';
+$txt['gallery_flickr_view_set'] = 'View Set';
+$txt['gallery_flickr_view_photo'] = 'View Photo';
+$txt['gallery_flickr_filename'] = 'Filename:';
+$txt['gallery_flickr_size'] = 'Size:';
+$txt['gallery_flickr_dimension'] = 'Dimension:';
+$txt['gallery_flickr_uploaded'] = 'Uploaded:';
+$txt['gallery_flickr_taken'] = 'Taken:';
+$txt['gallery_flickr_mode'] = 'Display Mode';
+$txt['gallery_flickr_images'] = 'images on';
+$txt['gallery_flickr_pages'] = 'page(s)';
+$txt['gallery_flickr_sets'] = 'sets';
+$txt['gallery_flickr_groups'] = 'groups';
+$txt['gallery_flickr_setson'] = 'sets on';
+$txt['gallery_flickr_groupson'] = 'groups on';
+$txt['flickr_db_cache_failed']='Warning: flickr database cache failed.';
+$txt['flickr_fs_cache_failed']='Warning: flickr file system cache failure.';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+
+<file name="$languagedir/Modifications.english-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$txt['flickr_gallery'] = 'Flickr Gallery';
+$txt['flickr_table_title'] = 'Flickr Gallery Browser';
+$txt['no_flickr_APIKey'] = 'Please specify a Flickr API Key.';
+$txt['no_flickr_account'] = 'Please specify a Flickr User Account.';
+$txt['no_flickr_photos'] = 'No Photos Found.';
+$txt['no_flickr_sets'] = 'No Sets Found.';
+$txt['no_flickr_groups'] = 'No Groups Found.';
+$txt['no_flickr_default_set'] = 'Default ablum only specified, but no default set assigned.';
+$txt['flickr_set'] = 'Set: ';
+$txt['flickr_group'] = 'Group: ';
+$txt['flickr_thumbnail']='Click to enlarge';
+$txt['flickr_set_thumbnail']='Click to go to set';
+$txt['flickr_account'] = 'Flickr Account: ';
+$txt['gallery_flickr_API_Key'] = 'Enter Flickr API Key';
+$txt['gallery_flickr_account'] = 'Enter Flickr Account ID';
+$txt['gallery_flickr_fixed_setgroup'] = 'Default Flickr Set/Group Only';
+$txt['gallery_flickr_default_setgroup'] = 'Default Flickr Set/Group';
+$txt['gallery_flickr_columns'] = 'Flickr Gallery Table Columns';
+$txt['gallery_flickr_rows'] = 'Flickr Gallery Table Rows';
+$txt['gallery_flickr_enable_db_catch'] = 'Enable Database Caching';
+$txt['gallery_flickr_enable_file_catch'] = 'Enable File Caching';
+$txt['gallery_flickr_cache_folder'] = 'Flickr Gallery Cache Folder<br /><span class="smalltext" style="font-weight: bold;">(If using file caching specify a valid folder here)</span>';
+$txt['gallery_flickr_view_set'] = 'View Set';
+$txt['gallery_flickr_view_photo'] = 'View Photo';
+$txt['gallery_flickr_filename'] = 'Filename:';
+$txt['gallery_flickr_size'] = 'Size:';
+$txt['gallery_flickr_dimension'] = 'Dimension:';
+$txt['gallery_flickr_uploaded'] = 'Uploaded:';
+$txt['gallery_flickr_taken'] = 'Taken:';
+$txt['gallery_flickr_mode'] = 'Display Mode';
+$txt['gallery_flickr_images'] = 'images on';
+$txt['gallery_flickr_pages'] = 'page(s)';
+$txt['gallery_flickr_sets'] = 'sets';
+$txt['gallery_flickr_groups'] = 'groups';
+$txt['gallery_flickr_setson'] = 'sets on';
+$txt['gallery_flickr_groupson'] = 'groups on';
+$txt['flickr_db_cache_failed']='Warning: flickr database cache failed.';
+$txt['flickr_fs_cache_failed']='Warning: flickr file system cache failure.';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Modifications.english_british.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$txt['flickr_gallery'] = 'Flickr Gallery';
+$txt['flickr_table_title'] = 'Flickr Gallery Browser';
+$txt['no_flickr_APIKey'] = 'Please specify a Flickr API Key.';
+$txt['no_flickr_account'] = 'Please specify a Flickr User Account.';
+$txt['no_flickr_photos'] = 'No Photos Found.';
+$txt['no_flickr_sets'] = 'No Sets Found.';
+$txt['no_flickr_groups'] = 'No Groups Found.';
+$txt['no_flickr_default_set'] = 'Default ablum only specified, but no default set assigned.';
+$txt['flickr_set'] = 'Set: ';
+$txt['flickr_group'] = 'Group: ';
+$txt['flickr_thumbnail']='Click to enlarge';
+$txt['flickr_set_thumbnail']='Click to go to set';
+$txt['flickr_account'] = 'Flickr Account: ';
+$txt['gallery_flickr_API_Key'] = 'Enter Flickr API Key';
+$txt['gallery_flickr_account'] = 'Enter Flickr Account ID';
+$txt['gallery_flickr_fixed_setgroup'] = 'Default Flickr Set/Group Only';
+$txt['gallery_flickr_default_setgroup'] = 'Default Flickr Set/Group';
+$txt['gallery_flickr_columns'] = 'Flickr Gallery Table Columns';
+$txt['gallery_flickr_rows'] = 'Flickr Gallery Table Rows';
+$txt['gallery_flickr_enable_db_catch'] = 'Enable Database Caching';
+$txt['gallery_flickr_enable_file_catch'] = 'Enable File Caching';
+$txt['gallery_flickr_cache_folder'] = 'Flickr Gallery Cache Folder<br /><span class="smalltext" style="font-weight: bold;">(If using file caching specify a valid folder here)</span>';
+$txt['gallery_flickr_view_set'] = 'View Set';
+$txt['gallery_flickr_view_photo'] = 'View Photo';
+$txt['gallery_flickr_filename'] = 'Filename:';
+$txt['gallery_flickr_size'] = 'Size:';
+$txt['gallery_flickr_dimension'] = 'Dimension:';
+$txt['gallery_flickr_uploaded'] = 'Uploaded:';
+$txt['gallery_flickr_taken'] = 'Taken:';
+$txt['gallery_flickr_mode'] = 'Display Mode';
+$txt['gallery_flickr_images'] = 'images on';
+$txt['gallery_flickr_pages'] = 'page(s)';
+$txt['gallery_flickr_sets'] = 'sets';
+$txt['gallery_flickr_groups'] = 'groups';
+$txt['gallery_flickr_setson'] = 'sets on';
+$txt['gallery_flickr_groupson'] = 'groups on';
+$txt['flickr_db_cache_failed']='Warning: flickr database cache failed.';
+$txt['flickr_fs_cache_failed']='Warning: flickr file system cache failure.';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Modifications.english_british-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$txt['flickr_gallery'] = 'Flickr Gallery';
+$txt['flickr_table_title'] = 'Flickr Gallery Browser';
+$txt['no_flickr_APIKey'] = 'Please specify a Flickr API Key.';
+$txt['no_flickr_account'] = 'Please specify a Flickr User Account.';
+$txt['no_flickr_photos'] = 'No Photos Found.';
+$txt['no_flickr_sets'] = 'No Sets Found.';
+$txt['no_flickr_groups'] = 'No Groups Found.';
+$txt['no_flickr_default_set'] = 'Default ablum only specified, but no default set assigned.';
+$txt['flickr_set'] = 'Set: ';
+$txt['flickr_group'] = 'Group: ';
+$txt['flickr_thumbnail']='Click to enlarge';
+$txt['flickr_set_thumbnail']='Click to go to set';
+$txt['flickr_account'] = 'Flickr Account: ';
+$txt['gallery_flickr_API_Key'] = 'Enter Flickr API Key';
+$txt['gallery_flickr_account'] = 'Enter Flickr Account ID';
+$txt['gallery_flickr_fixed_setgroup'] = 'Default Flickr Set/Group Only';
+$txt['gallery_flickr_default_setgroup'] = 'Default Flickr Set/Group';
+$txt['gallery_flickr_columns'] = 'Flickr Gallery Table Columns';
+$txt['gallery_flickr_rows'] = 'Flickr Gallery Table Rows';
+$txt['gallery_flickr_enable_db_catch'] = 'Enable Database Caching';
+$txt['gallery_flickr_enable_file_catch'] = 'Enable File Caching';
+$txt['gallery_flickr_cache_folder'] = 'Flickr Gallery Cache Folder<br /><span class="smalltext" style="font-weight: bold;">(If using file caching specify a valid folder here)</span>';
+$txt['gallery_flickr_view_set'] = 'View Set';
+$txt['gallery_flickr_view_photo'] = 'View Photo';
+$txt['gallery_flickr_filename'] = 'Filename:';
+$txt['gallery_flickr_size'] = 'Size:';
+$txt['gallery_flickr_dimension'] = 'Dimension:';
+$txt['gallery_flickr_uploaded'] = 'Uploaded:';
+$txt['gallery_flickr_taken'] = 'Taken:';
+$txt['gallery_flickr_mode'] = 'Display Mode';
+$txt['gallery_flickr_images'] = 'images on';
+$txt['gallery_flickr_pages'] = 'page(s)';
+$txt['gallery_flickr_sets'] = 'sets';
+$txt['gallery_flickr_groups'] = 'groups';
+$txt['gallery_flickr_setson'] = 'sets on';
+$txt['gallery_flickr_groupson'] = 'groups on';
+$txt['flickr_db_cache_failed']='Warning: flickr database cache failed.';
+$txt['flickr_fs_cache_failed']='Warning: flickr file system cache failure.';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english.php">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$helptxt['gallery_flickr_API_Key'] = 'Enter your Flickr web API Key<br />';
+$helptxt['gallery_flickr_account'] = 'Enter your Flickr User ID<br />This is your Flickr user account name.</br />';
+$helptxt['gallery_flickr_mode'] = 'Enter whether you want to display flickr groups or sets.</br />';
+$helptxt['gallery_flickr_fixed_setgroup'] = 'Only allows the viewing of the default set/group';
+$helptxt['gallery_flickr_default_setgroup'] = 'The default set/group to display.<br \>If not set displays all the user\'s public sets.';
+$helptxt['gallery_flickr_columns'] = 'Enter the number of columns to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_rows'] = 'Enter the number of rows to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_enable_db_catch']= 'To enable database caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Database caching will probably be faster than file caching.<br />Supports all SMF databases types MySQL,PostgreSQL and SQLite, plus many more!<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_enable_file_catch']= 'To enable file caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Filesystem caching will probably be slower than database caching.<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_cache_folder'] = 'If you enable file caching, you\'ll need to supply a folder where the web server has write access.<br />Note the default folder specified here will probably work.<br />You may not want to allow the world to view the files that are created during caching. If you want to hide this information, either make sure that your permissions are set correctly, or disable the webserver from displaying *.cache files. In Apache, you can specify this in the configuration files or in an .htaccess file with the following directives:<p>&lt;FilesMatch &#034;\.cache$&#034;&gt;<br />Deny from all<br />&lt;/FilesMatch&gt;</p>Alternatively, you can specify a directory that is outside of the web server\'s document root. ';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$helptxt['gallery_flickr_API_Key'] = 'Enter your Flickr web API Key<br />';
+$helptxt['gallery_flickr_account'] = 'Enter your Flickr User ID<br />This is your Flickr user account name.</br />';
+$helptxt['gallery_flickr_mode'] = 'Enter whether you want to display flickr groups or sets.</br />';
+$helptxt['gallery_flickr_fixed_setgroup'] = 'Only allows the viewing of the default set/group';
+$helptxt['gallery_flickr_default_setgroup'] = 'The default set/group to display.<br \>If not set displays all the user\'s public sets.';
+$helptxt['gallery_flickr_columns'] = 'Enter the number of columns to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_rows'] = 'Enter the number of rows to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_enable_db_catch']= 'To enable database caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Database caching will probably be faster than file caching.<br />Supports all SMF databases types MySQL,PostgreSQL and SQLite, plus many more!<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_enable_file_catch']= 'To enable file caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Filesystem caching will probably be slower than database caching.<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_cache_folder'] = 'If you enable file caching, you\'ll need to supply a folder where the web server has write access.<br />Note the default folder specified here will probably work.<br />You may not want to allow the world to view the files that are created during caching. If you want to hide this information, either make sure that your permissions are set correctly, or disable the webserver from displaying *.cache files. In Apache, you can specify this in the configuration files or in an .htaccess file with the following directives:<p>&lt;FilesMatch &#034;\.cache$&#034;&gt;<br />Deny from all<br />&lt;/FilesMatch&gt;</p>Alternatively, you can specify a directory that is outside of the web server\'s document root. ';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english_british.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$helptxt['gallery_flickr_API_Key'] = 'Enter your Flickr web API Key<br />';
+$helptxt['gallery_flickr_account'] = 'Enter your Flickr User ID<br />This is your Flickr user account name.</br />';
+$helptxt['gallery_flickr_mode'] = 'Enter whether you want to display flickr groups or sets.</br />';
+$helptxt['gallery_flickr_fixed_setgroup'] = 'Only allows the viewing of the default set/group';
+$helptxt['gallery_flickr_default_setgroup'] = 'The default set/group to display.<br \>If not set displays all the user\'s public sets.';
+$helptxt['gallery_flickr_columns'] = 'Enter the number of columns to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_rows'] = 'Enter the number of rows to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_enable_db_catch']= 'To enable database caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Database caching will probably be faster than file caching.<br />Supports all SMF databases types MySQL,PostgreSQL and SQLite, plus many more!<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_enable_file_catch']= 'To enable file caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Filesystem caching will probably be slower than database caching.<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_cache_folder'] = 'If you enable file caching, you\'ll need to supply a folder where the web server has write access.<br />Note the default folder specified here will probably work.<br />You may not want to allow the world to view the files that are created during caching. If you want to hide this information, either make sure that your permissions are set correctly, or disable the webserver from displaying *.cache files. In Apache, you can specify this in the configuration files or in an .htaccess file with the following directives:<p>&lt;FilesMatch &#034;\.cache$&#034;&gt;<br />Deny from all<br />&lt;/FilesMatch&gt;</p>Alternatively, you can specify a directory that is outside of the web server\'s document root. ';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english_british-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Flickr Gallery Mod.
+$helptxt['gallery_flickr_API_Key'] = 'Enter your Flickr web API Key<br />';
+$helptxt['gallery_flickr_account'] = 'Enter your Flickr User ID<br />This is your Flickr user account name.</br />';
+$helptxt['gallery_flickr_mode'] = 'Enter whether you want to display flickr groups or sets.</br />';
+$helptxt['gallery_flickr_fixed_setgroup'] = 'Only allows the viewing of the default set/group';
+$helptxt['gallery_flickr_default_setgroup'] = 'The default set/group to display.<br \>If not set displays all the user\'s public sets.';
+$helptxt['gallery_flickr_columns'] = 'Enter the number of columns to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_rows'] = 'Enter the number of rows to use in the Flickr Gallery table.</br />';
+$helptxt['gallery_flickr_enable_db_catch']= 'To enable database caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Database caching will probably be faster than file caching.<br />Supports all SMF databases types MySQL,PostgreSQL and SQLite, plus many more!<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_enable_file_catch']= 'To enable file caching, check this option. <br />Caching can be very important to a project. Just a few calls to the Flickr API can take long enough to bore your average web user (depending on the calls you are making).<br />Filesystem caching will probably be slower than database caching.<br />Note that if both database and file caching are both enabled then database caching will take priority.';
+$helptxt['gallery_flickr_cache_folder'] = 'If you enable file caching, you\'ll need to supply a folder where the web server has write access.<br />Note the default folder specified here will probably work.<br />You may not want to allow the world to view the files that are created during caching. If you want to hide this information, either make sure that your permissions are set correctly, or disable the webserver from displaying *.cache files. In Apache, you can specify this in the configuration files or in an .htaccess file with the following directives:<p>&lt;FilesMatch &#034;\.cache$&#034;&gt;<br />Deny from all<br />&lt;/FilesMatch&gt;</p>Alternatively, you can specify a directory that is outside of the web server\'s document root. ';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+
+</modification>

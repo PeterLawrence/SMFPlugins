@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+<id>PJL2000:PicasaGalleryBrowser</id>
+<version>0.4</version>
+
+<file name="$boarddir/index.php">
+	<operation>
+		<search position="before"><![CDATA[
+		'coppa' => array('Register.php', 'CoppaForm'),]]></search>
+		<add><![CDATA[
+		'picasagallerybrowser' => array('picasagallerybrowser.php', 'PicasaGalleryBrowser'),]]></add>
+	</operation>
+</file>
+
+<file name="$themedir/index.template.php">
+	<operation>
+		<search position="before"><![CDATA[$current_action = 'admin';
+	if (in_array($context['current_action'], array(]]></search>
+		<add><![CDATA['picasagallerybrowser',]]></add>
+	</operation>
+	<operation>
+		<search position="before"><![CDATA[// the [member] list button
+	if ($context['allow_memberlist'])
+		echo ($current_action == 'mlist' || $context['browser']['is_ie4']) ? '<td class="maintab_active_' . $first . '">&nbsp;</td>' : '' , '
+				<td valign="top" class="maintab_' , $current_action == 'mlist' ? 'active_back' : 'back' , '">
+					<a href="', $scripturl, '?action=mlist">' , $txt[331] , '</a>
+				</td>' , $current_action == 'mlist' ? '<td class="maintab_active_' . $last . '">&nbsp;</td>' : '';
+]]></search>
+		<add><![CDATA[
+	// the [picasagallerybrowser] button
+		echo ($current_action == 'picasagallerybrowser' || $context['browser']['is_ie4']) ? '<td class="maintab_active_' . $first . '">&nbsp;</td>' : '' , '
+				<td valign="top" class="maintab_' , $current_action == 'picasagallerybrowser' ? 'active_back' : 'back' , '">
+					<a href="', $scripturl, '?action=picasagallerybrowser">' , $txt['picasa_gallery']  , '</a>
+				</td>' , $current_action == 'picasagallerybrowser' ? '<td class="maintab_active_' . $last . '">&nbsp;</td>' : '';
+
+		]]></add>
+	</operation>
+</file>
+
+<file name="$sourcedir/ModSettings.php">
+	<operation>
+		<search position="before"><![CDATA[array('check', 'who_enabled'),]]></search>
+		<add><![CDATA[
+		'',
+			// PJL Picasa Gallery Mod
+			array('text', 'gallery_picasa_server_url'),
+			array('text', 'gallery_picasa_account'),
+			array('check', 'gallery_picasa_fixed_album'),
+			array('text', 'gallery_picasa_default_album'),
+			array('int', 'gallery_picasa_columns'),
+            array('int', 'gallery_picasa_rows'),]]></add>
+	</operation>
+</file>
+
+<file name="$languagedir/Modifications.english.php">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$txt['picasa_gallery'] = 'Picasa Gallery';
+$txt['picasa_table_title'] = 'Picasa Gallery Browser';
+$txt['no_picasa_server'] = 'Please specify a Picasa web server.';
+$txt['no_picasa_account'] = 'Please specify a Picasa user account.';
+$txt['no_picasa_photos'] = 'No Photos Found.';
+$txt['no_picasa_albums'] = 'No Albums Found.';
+$txt['no_picasa_default_album'] = 'Default ablum only specified, but no default album assigned.';
+$txt['picasa_album'] = 'Album: ';
+$txt['picasa_thumbnail']='Click to enlarge';
+$txt['picasa_album_thumbnail']='Click to go to album';
+$txt['picasa_account'] = 'Picasa Account: ';
+$txt['gallery_picasa_server_url'] = 'Enter Picasa Server URL';
+$txt['gallery_picasa_account'] = 'Enter Picasa Account ID';
+$txt['gallery_picasa_fixed_album'] = 'Default Picasa Album Only';
+$txt['gallery_picasa_default_album'] = 'Default Picasa Album';
+$txt['gallery_picasa_columns'] = 'Picasa Gallery Columns';
+$txt['gallery_picasa_rows'] = 'Picasa Gallery Rows';
+$txt['gallery_picasa_view_album'] = 'View Album';
+$txt['gallery_picasa_view_photo'] = 'View Photo';
+$txt['gallery_picasa_filename'] = 'Filename:';
+$txt['gallery_picasa_size'] = 'Size:';
+$txt['gallery_picasa_dimension'] = 'Dimension:';
+$txt['gallery_picasa_uploaded'] = 'Uploaded:';
+$txt['gallery_picasa_taken'] = 'Taken:';
+$txt['gallery_picasa_pages'] = 'page(s)';
+$txt['gallery_picasa_images'] = 'images on';
+$txt['gallery_picasa_albums'] = 'albums on';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Modifications.english-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$txt['picasa_gallery'] = 'Picasa Gallery';
+$txt['picasa_table_title'] = 'Picasa Gallery Browser';
+$txt['no_picasa_server'] = 'Please specify a Picasa web server.';
+$txt['no_picasa_account'] = 'Please specify a Picasa user account.';
+$txt['no_picasa_photos'] = 'No Photos Found.';
+$txt['no_picasa_albums'] = 'No Albums Found.';
+$txt['no_picasa_default_album'] = 'Default ablum only specified, but no default album assigned.';
+$txt['picasa_album'] = 'Album: ';
+$txt['picasa_thumbnail']='Click to enlarge';
+$txt['picasa_album_thumbnail']='Click to go to album';
+$txt['picasa_account'] = 'Picasa Account: ';
+$txt['gallery_picasa_server_url'] = 'Enter Picasa Server URL';
+$txt['gallery_picasa_account'] = 'Enter Picasa Account ID';
+$txt['gallery_picasa_fixed_album'] = 'Default Picasa Album Only';
+$txt['gallery_picasa_default_album'] = 'Default Picasa Album';
+$txt['gallery_picasa_columns'] = 'Picasa Gallery Columns';
+$txt['gallery_picasa_rows'] = 'Picasa Gallery Rows';
+$txt['gallery_picasa_view_album'] = 'View Album';
+$txt['gallery_picasa_view_photo'] = 'View Photo';
+$txt['gallery_picasa_filename'] = 'Filename:';
+$txt['gallery_picasa_size'] = 'Size:';
+$txt['gallery_picasa_dimension'] = 'Dimension:';
+$txt['gallery_picasa_uploaded'] = 'Uploaded:';
+$txt['gallery_picasa_taken'] = 'Taken:';
+$txt['gallery_picasa_pages'] = 'page(s)';
+$txt['gallery_picasa_images'] = 'images on';
+$txt['gallery_picasa_albums'] = 'albums on';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Modifications.english_british.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$txt['picasa_gallery'] = 'Picasa Gallery';
+$txt['picasa_table_title'] = 'Picasa Gallery Browser';
+$txt['no_picasa_server'] = 'Please specify a Picasa web server.';
+$txt['no_picasa_account'] = 'Please specify a Picasa user account.';
+$txt['no_picasa_photos'] = 'No Photos Found.';
+$txt['no_picasa_albums'] = 'No Albums Found.';
+$txt['no_picasa_default_album'] = 'Default ablum only specified, but no default album assigned.';
+$txt['picasa_album'] = 'Album: ';
+$txt['picasa_thumbnail']='Click to enlarge';
+$txt['picasa_album_thumbnail']='Click to go to album';
+$txt['picasa_account'] = 'Picasa Account: ';
+$txt['gallery_picasa_server_url'] = 'Enter Picasa Server URL';
+$txt['gallery_picasa_account'] = 'Enter Picasa Account ID';
+$txt['gallery_picasa_fixed_album'] = 'Default Picasa Album Only';
+$txt['gallery_picasa_default_album'] = 'Default Picasa Album';
+$txt['gallery_picasa_columns'] = 'Picasa Gallery Columns';
+$txt['gallery_picasa_rows'] = 'Picasa Gallery Rows';
+$txt['gallery_picasa_view_album'] = 'View Album';
+$txt['gallery_picasa_view_photo'] = 'View Photo';
+$txt['gallery_picasa_filename'] = 'Filename:';
+$txt['gallery_picasa_size'] = 'Size:';
+$txt['gallery_picasa_dimension'] = 'Dimension:';
+$txt['gallery_picasa_uploaded'] = 'Uploaded:';
+$txt['gallery_picasa_taken'] = 'Taken:';
+$txt['gallery_picasa_pages'] = 'page(s)';
+$txt['gallery_picasa_images'] = 'images on';
+$txt['gallery_picasa_albums'] = 'albums on';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Modifications.english_british-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$txt['picasa_gallery'] = 'Picasa Gallery';
+$txt['picasa_table_title'] = 'Picasa Gallery Browser';
+$txt['no_picasa_server'] = 'Please specify a Picasa web server.';
+$txt['no_picasa_account'] = 'Please specify a Picasa user account.';
+$txt['no_picasa_photos'] = 'No Photos Found.';
+$txt['no_picasa_albums'] = 'No Albums Found.';
+$txt['no_picasa_default_album'] = 'Default ablum only specified, but no default album assigned.';
+$txt['picasa_album'] = 'Album: ';
+$txt['picasa_thumbnail']='Click to enlarge';
+$txt['picasa_album_thumbnail']='Click to go to album';
+$txt['picasa_account'] = 'Picasa Account: ';
+$txt['gallery_picasa_server_url'] = 'Enter Picasa Server URL';
+$txt['gallery_picasa_account'] = 'Enter Picasa Account ID';
+$txt['gallery_picasa_fixed_album'] = 'Default Picasa Album Only';
+$txt['gallery_picasa_default_album'] = 'Default Picasa Album';
+$txt['gallery_picasa_columns'] = 'Picasa Gallery Columns';
+$txt['gallery_picasa_rows'] = 'Picasa Gallery Rows';
+$txt['gallery_picasa_view_album'] = 'View Album';
+$txt['gallery_picasa_view_photo'] = 'View Photo';
+$txt['gallery_picasa_filename'] = 'Filename:';
+$txt['gallery_picasa_size'] = 'Size:';
+$txt['gallery_picasa_dimension'] = 'Dimension:';
+$txt['gallery_picasa_uploaded'] = 'Uploaded:';
+$txt['gallery_picasa_taken'] = 'Taken:';
+$txt['gallery_picasa_pages'] = 'page(s)';
+$txt['gallery_picasa_images'] = 'images on';
+$txt['gallery_picasa_albums'] = 'albums on';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english.php">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$helptxt['gallery_picasa_server_url'] = 'Enter your Picasa web server url <br /> e.g. http://picasaweb.google.com </br />';
+$helptxt['gallery_picasa_account'] = 'Enter your Picasa User ID<br />This is your Google Picasa user account name.</br />';
+$helptxt['gallery_picasa_fixed_album'] = 'Only allows the viewing of the default album';
+$helptxt['gallery_picasa_default_album'] = 'The default album to display.<br \>If not set displays all the user\'s public albums';
+$helptxt['gallery_picasa_columns'] = 'Enter the number of columns to use in the Picasa Gallery table.</br />';
+$helptxt['gallery_picasa_rows'] = 'Enter the number of rows to use in the Picasa Gallery table.</br />';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$helptxt['gallery_picasa_server_url'] = 'Enter your Picasa web server url <br /> e.g. http://picasaweb.google.com </br />';
+$helptxt['gallery_picasa_account'] = 'Enter your Picasa User ID<br />This is your Google Picasa user account name.</br />';
+$helptxt['gallery_picasa_fixed_album'] = 'Only allows the viewing of the default album';
+$helptxt['gallery_picasa_default_album'] = 'The default album to display.<br \>If not set displays all the user\'s public albums';
+$helptxt['gallery_picasa_columns'] = 'Enter the number of columns to use in the Picasa Gallery table.</br />';
+$helptxt['gallery_picasa_rows'] = 'Enter the number of rows to use in the Picasa Gallery table.</br />';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english_british.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$helptxt['gallery_picasa_server_url'] = 'Enter your Picasa web server url <br /> e.g. http://picasaweb.google.com </br />';
+$helptxt['gallery_picasa_account'] = 'Enter your Picasa User ID<br />This is your Google Picasa user account name.</br />';
+$helptxt['gallery_picasa_fixed_album'] = 'Only allows the viewing of the default album';
+$helptxt['gallery_picasa_default_album'] = 'The default album to display.<br \>If not set displays all the user\'s public albums';
+$helptxt['gallery_picasa_columns'] = 'Enter the number of columns to use in the Picasa Gallery table.</br />';
+$helptxt['gallery_picasa_rows'] = 'Enter the number of rows to use in the Picasa Gallery table.</br />';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+	
+<file name="$languagedir/Help.english_british-utf8.php" error="skip">
+	<operation>
+		<search position="end"></search>
+			<add><![CDATA[
+// PJL : Start of Picasa Gallery Mod.
+$helptxt['gallery_picasa_server_url'] = 'Enter your Picasa web server url <br /> e.g. http://picasaweb.google.com </br />';
+$helptxt['gallery_picasa_account'] = 'Enter your Picasa User ID<br />This is your Google Picasa user account name.</br />';
+$helptxt['gallery_picasa_fixed_album'] = 'Only allows the viewing of the default album';
+$helptxt['gallery_picasa_default_album'] = 'The default album to display.<br \>If not set displays all the user\'s public albums';
+$helptxt['gallery_picasa_columns'] = 'Enter the number of columns to use in the Picasa Gallery table.</br />';
+$helptxt['gallery_picasa_rows'] = 'Enter the number of rows to use in the Picasa Gallery table.</br />';
+// End Mod.
+]]></add>
+	</operation>
+</file>
+
+</modification>

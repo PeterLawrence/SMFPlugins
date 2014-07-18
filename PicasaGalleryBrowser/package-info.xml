@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>PJL2000:PicasaGalleryBrowser</id>
+	<name>Picasa Gallery Browser</name>
+	<type>modification</type>
+	<version>0.6</version>
+
+	<install for="1.1 - 1.1.99,1.1 RC3,1.1 RC2">
+		<readme>ReadMe.txt</readme>
+		<modification type="file">PicasaGalleryBrowser.xml</modification>
+		<require-dir name="picasahighslide" destination="$themedir" />
+		<require-file name="picasagallerybrowser.php" destination="$sourcedir" />
+		<require-file name="class-snoopy.php" destination="$sourcedir" />
+		<require-file name="rss-functions-mod.php" destination="$sourcedir" />
+		<require-file name="picasagallerybrowser.template.php" destination="$themedir" />
+		<code>picasagalleryinstall.php</code>
+	</install>
+
+	<uninstall for="1.1 - 1.1.99,1.1 RC3,1.1 RC2">
+		<modification type="file" reverse="true">PicasaGalleryBrowser.xml</modification>
+		<remove-dir name="$themedir/picasahighslide" />
+		<remove-file name="$themedir/picasagallerybrowser.template.php" />
+		<remove-file name="$sourcedir/picasagallerybrowser.php" />
+		<remove-file name="$sourcedir/class-snoopy.php" />
+		<remove-file name="$sourcedir/rss-functions-mod.php" />
+	</uninstall>
+	
+	<install for="2.0 - 2.99.99">
+		<readme>ReadMe.txt</readme>
+		<modification type="file">PicasaGalleryBrowserSMF2.xml</modification>
+		<require-dir name="picasahighslide" destination="$themedir" />
+		<require-file name="picasagallerybrowser.php" destination="$sourcedir" />
+		<require-file name="class-snoopy.php" destination="$sourcedir" />
+		<require-file name="rss-functions-mod.php" destination="$sourcedir" />
+		<require-file name="picasagallerybrowser.template.php" destination="$themedir" />
+		<code>picasagalleryinstallSMF2.php</code>
+	</install>
+
+	<uninstall for="2.0 - 2.99.99">
+		<modification type="file" reverse="true">PicasaGalleryBrowserSMF2.xml</modification>
+		<remove-dir name="$themedir/picasahighslide" />
+		<remove-file name="$themedir/picasagallerybrowser.template.php" />
+		<remove-file name="$sourcedir/picasagallerybrowser.php" />
+		<remove-file name="$sourcedir/class-snoopy.php" />
+		<remove-file name="$sourcedir/rss-functions-mod.php" />
+	</uninstall>
+</package-info>
